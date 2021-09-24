@@ -34,6 +34,7 @@ Route::get('users',[UserController::class,'index']);
 Route::get('fetch-users',[UserController::class,'fetchUser']);
 Route::post('users',[UserController::class,'store']);
 Route::get('edit_user/{id}',[UserController::class,'editUser']);
+Route::post('update_user/{id}',[UserController::class,'updateUser']);
 
 
 
