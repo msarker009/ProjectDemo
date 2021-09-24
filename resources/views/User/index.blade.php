@@ -49,9 +49,9 @@
     <!-- Edit&UpdateUserModal -->
         @extends('User.edit');
     <!--End-Edit&UpdateUserModal -->
-    <!--Delete-StudentModal -->
-
-    <!--End-DeleteStudentModal -->
+    <!--Delete-UserModal -->
+    @extends('User.delete');
+    <!--End-DeleteUserModal -->
 
     <div class="container py-5">
         <div class="row">

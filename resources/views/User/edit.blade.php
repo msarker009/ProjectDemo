@@ -6,7 +6,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Edit & Update Student</h5>
 
             </div>
-            <form id="UpdateStudentForm" method="POST" enctype="multipart/form-data" >
+            <form id="UpdateUserForm" method="POST" enctype="multipart/form-data" >
                 <div class="modal-body">
                     <input type="hidden"  id="edit_user_id">
 
