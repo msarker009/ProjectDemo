@@ -44,6 +44,6 @@ class User extends Authenticatable
 
     public function phone()
     {
-        return $this->hasOne(Phone::class);
+        return $this->hasOne('App\Models\Phone','user_id');
     }
 }
