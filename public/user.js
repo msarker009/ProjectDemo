@@ -64,9 +64,7 @@ $(document).ready(function (){
                     $.each(response.errors.phone, function (key,err_values){
                         $('#saveForm_errList_phone').append(err_values);
                     });
-                    $.each(response.errors.image, function (key,err_values){
-                        $('#saveForm_errList_image').append(err_values);
-                    });
+
 
 
 
@@ -119,6 +117,83 @@ $(document).ready(function (){
 
         });
 
+
+
+    });
+
+    <!-- Update Data -->
+    $(document).on('submit','#UpdateUserForm',function (e)
+    {
+        e.preventDefault();
+        let user_id=$('#edit_user_id').val();
+        let EditFormData=new FormData($('#UpdateUserForm')[0]);
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type:"POST",
+            url:"update_user/"+user_id,
+            data:EditFormData,
+            dataType:"json",
+            processData: false,
+            contentType: false,
+            beforeSend: function() {
+                // setting a timeout
+                $('#updateForm_errList_name').html("");
+                $('#updateForm_errList_email').html("");
+                $('#updateForm_errList_phone').html("");
+                //$('#updateForm_errList_image').html("");
+            },
+
+            success:function (response){
+                //console.log(response);
+                if(response.status==400){
+                    $('#updateForm_errList').html("");
+                    $('#updateForm_errList').addClass('alert alert-danger');
+                    $.each(response.errors.name, function (key,err_values){
+                        //console.log(err_values)
+                        $('#updateForm_errList_name').append(err_values);
+                    });
+                    $.each(response.errors.email, function (key,err_values){
+                        //console.log(err_values)
+                        $('#updateForm_errList_email').append(err_values);
+                    });
+                    $.each(response.errors.phone, function (key,err_values){
+                        //console.log(err_values)
+                        $('#updateForm_errList_phone').append(err_values);
+                    });
+                    $.each(response.errors.image, function (key,err_values){
+                        //console.log(err_values)
+                        $('#updateForm_errList_image').append(err_values);
+                    });
+
+                }else if(response.status==400){
+                    $('#updateForm_errList').html("");
+                    $('#success_message').show();
+                    $('#success_message').text(response.message);
+
+                }else{
+                    $('#updateForm_errList').html("");
+                    $('#success_message').html("");
+                    $('#success_message').show();
+                    $('#success_message').text(response.message);
+
+                    $('#EditUserModal').modal('hide');
+                    fetchData();
+                    setTimeout(function(){
+                        $('#success_message').remove();
+                    }, 2000);
+
+
+
+
+                }
+            }
+
+        });
 
 
     });
