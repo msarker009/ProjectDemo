@@ -25,7 +25,7 @@ class UserController extends Controller
     }
 
    public  function store(Request $request){
-        //dd($request->all());
+
 
         $validator=Validator::make($request->all(),[
             'name'=>'required|max:191',
@@ -89,11 +89,12 @@ class UserController extends Controller
     }
 
     public function updateUser(Request $request,$id){
+        //return($request->all());
         $validator=Validator::make($request->all(),[
             'name'=>'required|max:191',
             'email'=>'required|email|max:191',
             'phone'=>'required|max:12',
-            'image'=>'required|mimes:jpeg,jpg,png,gif|max:2048',
+//            'image'=>'required|mimes:jpeg,jpg,png,gif|max:2048',
 
         ]);
 
@@ -105,11 +106,13 @@ class UserController extends Controller
         }
         else
         {
-            $users=User::with('Phone')->find($id);
+            $users=User::with('phone')->find($id);
+
             if($users)
             {
                 $users->name=$request->input('name');
                 $users->email=$request->input('email');
+//                $users->phone->phone=$request->input('phone');
                 if($request->hasFile('image'))
                 {
                     $path="User_image/".$users->image;
@@ -123,8 +126,10 @@ class UserController extends Controller
                     $users->image=$file_name;
 
                 }
-
-
+                $users->update();
+                $phone=Phone::find($id);
+                $phone->phone=$request->input('phone');
+                $phone->update();
             }
             else
             {
@@ -133,11 +138,6 @@ class UserController extends Controller
                     'message'=>'User not found',
                 ]);
             }
-            $users->update();
-            $phone=new Phone();
-            $phone->user_id=$users->id;
-            $phone->phone=$request->input('phone');
-            $phone->update($phone->phone);
 
             return response()->json([
                 'status'=>200,
