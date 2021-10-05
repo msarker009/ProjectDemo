@@ -8,6 +8,7 @@ extends('layouts.frontend')
                     <div class="card-header text-center">
                         <h2>Welcome to Laravel 8 Application</h2>
                         <h2>hello</h2>
+                        <p>test page</p>
                     </div>
 
                     <div class="card-body text-center">
