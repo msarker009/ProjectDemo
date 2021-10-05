@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 
     <!-- AddUserModal -->
@@ -7,11 +6,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
 
                 </div>
 
                 <form id="AddUserForm" method="POST" enctype="multipart/form-data" >
+                    @csrf
                     <div class="modal-body">
                         <div class="form-group mb-3">
                             <label for="">Name</label>
@@ -60,8 +60,8 @@
                 <div class="alert alert-success" id="success_message" style="display:none"></div>
                 <div class="card">
                     <div class="card-header">
-                        <h4>User Information
-                            <a href="" data-bs-toggle="modal" data-bs-target="#AddUserModal" class="btn btn-primary float-end">Add User</a>
+                        <h4>Employee Information
+                            <a href="" data-bs-toggle="modal" data-bs-target="#AddUserModal" class="btn btn-primary float-end">Add Employee</a>
                         </h4>
                     </div>
                     <div class="card-body">

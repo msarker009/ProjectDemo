@@ -8,5 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     use HasFactory;
-    protected $guarded=[];
+    protected $fillable=[
+        'name',
+        'email',
+        'image',
+    ];
+
+
+    public function phone()
+    {
+        return $this->hasOne('App\Models\Phone','emp_id');
+    }
 }

@@ -20,7 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'image',
+        'password',
     ];
 
     /**
@@ -42,8 +42,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function phone()
-    {
-        return $this->hasOne('App\Models\Phone','user_id');
-    }
+
 }

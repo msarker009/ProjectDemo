@@ -5,7 +5,7 @@ $(document).ready(function (){
     function fetchData(){
         $.ajax({
             type: 'GET',
-            url: 'fetch-users',
+            url: 'fetch-employees',
             dataType:'json',
             success:function (response){
                 $('tbody').html("");
@@ -40,7 +40,7 @@ $(document).ready(function (){
         //console.log("hi")
         $.ajax({
             type:"POST",
-            url:"users",
+            url:"employees",
             data:formData,
             processData: false,
             contentType: false,
@@ -73,9 +73,9 @@ $(document).ready(function (){
                     $('#saveForm_errList').html("");
                     $('#success_message').show();
                     $('#success_message').text(response.message);
-                    $('#AddStudentModal').modal('hide');
-                    $('#AddStudentModal').find('input').val("");
-                    window.location.reload('users');
+                    $('#AddUserModal').modal('hide');
+                    $('#AddUserModal').find('input').val("");
+                    window.location.reload('employees');
 
                 }
             }
@@ -97,7 +97,7 @@ $(document).ready(function (){
         });
         $.ajax({
             type:"GET",
-            url:"edit_user/"+user_id,
+            url:"edit_employee/"+user_id,
             success:function(response){
                 if(response.status== 400){
                     $('#success_message').html("");
@@ -135,7 +135,7 @@ $(document).ready(function (){
         });
         $.ajax({
             type:"POST",
-            url:"update_user/"+user_id,
+            url:"update_employee/"+user_id,
             data:EditFormData,
             dataType:"json",
             processData: false,
