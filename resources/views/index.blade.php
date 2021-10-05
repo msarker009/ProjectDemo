@@ -10,7 +10,11 @@ extends('layouts.frontend')
                     </div>
 
                     <div class="card-body text-center">
+
                         <p>test page</p>
+
+                        <p>page</p>
+
                     </div>
                 </div>
             </div>
